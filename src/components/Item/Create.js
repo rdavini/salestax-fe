@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Button, Col, Row, Form} from 'react-bootstrap';
 import api from '../../services/api'
 
-const Create = () => {
-  const [qty, setQty] = useState('')
-  const [desc, setDesc] = useState('')
-  const [price, setPrice] = useState('')
+const Create = ({setUrl}) => {
+  const [qty, setQty] = useState('1')
+  const [desc, setDesc] = useState('a')
+  const [price, setPrice] = useState('1')
 
   const handleSubmit = () => {
     const new_item = {
@@ -14,14 +14,14 @@ const Create = () => {
       price: price
     } 
     
-    api.api_sales_tax_create_items(new_item).then( res => {
-      console.log(res.data);
+    api.api_sales_tax_create_items(new_item).then( () => {
+      setUrl('index')
     }).catch((err) => console.log(err));
   }
 
   return (
-    <div class='container'>
-      <h1 style={{textAlign: 'left'}}>Item Details</h1>
+    <div class='container' style={{marginTop: 5}}>
+      <h2 style={{textAlign: 'left'}}>Item Details</h2>
       <Form>
         <Row>
             <Col>
