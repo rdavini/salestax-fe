@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import api from '../../services/api'
 
+const styles={
+    dropBtn: {
+        marginTop: '1.5rem',
+        float: 'right',
+        clear: 'both'
+    }
+}
+
 const CurrencyBtn = ({items, setItems, currency, setCurrency}) => {
     const [eurToInrRate, setEurToInrRate] = useState(null)
     const [eurToUsdRate, setEurToUsdRate] = useState(null)
@@ -58,7 +66,7 @@ const CurrencyBtn = ({items, setItems, currency, setCurrency}) => {
     }
 
     return (
-      <DropdownButton id="dropdown-basic-button" variant="light" title={currency} style={{marginTop: '1.5rem'}}>
+      <DropdownButton id="dropdown-basic-button" variant="light" title={currency} style={styles.dropBtn}>
         {currency == 'EUR' && 
         <div>
             <Dropdown.Item href="#/action-2" onClick={()=>handleSubmit('INR')}>INR</Dropdown.Item>

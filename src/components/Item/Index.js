@@ -3,6 +3,7 @@ import api from '../../services/api';
 import CurrencyBtn from './CurrencyBtn';
 import Export from './Export';
 import Table from './Table'
+import useCurrency from '../../hooks/useCurrency'
 
 const styles = {
     back: {
@@ -11,8 +12,8 @@ const styles = {
     },
     title: {
         textAlign: 'left',
-        marginLeft: 50,
-        float: 'left'
+        float: 'left',
+        marginRight: 5
     }
 }
 
@@ -26,7 +27,7 @@ const Index = ({setUrl}) => {
     const [items, setItems] = useState([])
     const [totalCost, setTotalCost] = useState()
     const [totalTax, setTotalTax] = useState()
-    const [currency, setCurrency] = useState('EUR')
+    const { currency, setCurrency, currencyIcon} = useCurrency()
 
     const getItems = () => {
         api.api_sales_tax_get_items().then(rs =>{
@@ -40,19 +41,19 @@ const Index = ({setUrl}) => {
         getItems();
     }, [])
 
-    return <div>
+    return <div className='container col-md-8' style={{marginTop: 50}}>
             {
                 (items.length > 0  && totalCost && totalTax)?
                 <div>
                     <h2 style={styles.title}>Receipt</h2>
-                    <Export header={headers} items={items} totalCost={totalCost} totalTax={totalTax} />
+                    <Export header={headers} items={items} totalCost={totalCost} totalTax={totalTax} currency={currency} />
                     <CurrencyBtn items={items} setItems={setItems} currency={currency} setCurrency={setCurrency}/>
-                    <Table items={items} totalCost={totalCost} totalTax={totalTax} currency={currency}/>
+                    <Table items={items} totalCost={totalCost} totalTax={totalTax} currencyIcon={currencyIcon}/>
                 </div>
                 :
                 'Loading items ...'
             }
-            <span style={styles.back} className='offset-md-1' onClick={()=> setUrl('create')}>back</span>
+            <span style={styles.back} onClick={()=> setUrl('create')}>back</span>
         </div>
 }
 
