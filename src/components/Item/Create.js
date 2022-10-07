@@ -8,8 +8,23 @@ const Create = ({setUrl}) => {
   const [itemsRows, setItemsRows] = useState([])
   const [index, setIndex] = useState(0)
 
+  const styles= {
+    contentMarginTop: {
+      marginTop: 50
+    },
+    floatL:{
+      float: 'left'
+    },
+    alignL:{
+      textAlign: 'left'
+    },
+    btnMarginTop:{
+      marginTop: 30
+    }
+  }
+
   useEffect(()=>{
-    setItemsRows([<ItemForm itemsPayload={itemsPayload} setItemsPayload={setItemsPayload} index={index}/>])
+    setItemsRows([<ItemForm itemsPayload={itemsPayload} setItemsPayload={setItemsPayload} index={index} />])
   }, [])
 
   const handleSubmit = () => {
@@ -24,15 +39,19 @@ const Create = ({setUrl}) => {
   }
 
   return (
-    <div class='container' style={{marginTop: 5}}>
-      <h2 style={{textAlign: 'left'}}>Item Details</h2>
+    <div class='container' style={styles.contentMarginTop}>
+      <h2 style={styles.alignL}>Item Details</h2>
       <Form>
-        {itemsRows}
+        <div className='col-md-10' style={styles.floatL}>
+          {itemsRows}
+        </div>
 
-        <Button onClick={addRow}>+</Button>
-        <Button variant="primary" onClick={handleSubmit} style={{marginTop: 20, float: 'left'}}>
-          Generate Receipt
-        </Button>
+        <Button style={styles.btnMarginTop} onClick={addRow}>+</Button>
+        <div style={{clear: 'both', paddingTop: 20}}>
+          <Button  variant="primary" onClick={handleSubmit}>
+            Generate Receipt
+          </Button>
+        </div>
       </Form>
     </div>
   );

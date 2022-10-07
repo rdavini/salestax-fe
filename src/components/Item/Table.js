@@ -1,56 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Col, Row } from 'react-bootstrap';
-import { BiEuro, BiDollar, BiRupee } from 'react-icons/bi';
 import TotalInfo from './TotalInfo';
 
-const Table = ({items, totalCost, totalTax, currency}) => {
-    const [currencyIcon, setCurrencyIcon] = useState(<BiEuro/>)
-    useEffect(()=>{
-        updateCurrencyIcon()
-    }, [currency])
-
-    const updateCurrencyIcon = () => {
-        switch(currency){
-            case 'EUR':
-                setCurrencyIcon(<BiEuro/>)
-                break;
-            case 'INR':
-                setCurrencyIcon(<BiRupee/>)
-                break;
-            case 'USD':
-                setCurrencyIcon(<BiDollar/>)
-                break;
-            default:
-                return 'Currency not available'
-        }
-    }
-
-    return <div>
-            {currencyIcon ?
-                <div>
-                <Row>
-                    <Col>Qty</Col>
-                    <Col>Item Description</Col>
-                    <Col>Price</Col>
+const Table = ({items, totalCost, totalTax, currencyIcon}) => {
+    return <div style={{clear: 'both'}}>
+                <Row style={{borderBottom: 1, borderBottomStyle: 'solid'}}>
+                    <Col><strong style={{float: 'left'}}>Qty</strong></Col>
+                    <Col><strong style={{float: 'left'}}>Item Description</strong></Col>
+                    <Col><strong style={{float: 'left'}}>Price</strong></Col>
                 </Row>
                 {items.map(it => {
                     return(
                         <Row>
-                            <Col>{it.qty}</Col>
-                            <Col>{it.desc}</Col>
-                            <Col>
+                            <Col style={{textAlign: 'left'}}>{it.qty}</Col>
+                            <Col style={{textAlign: 'left'}}>{it.desc}</Col>
+                            <Col style={{textAlign: 'left'}}>
                                 {currencyIcon}
                                 {it.price}
                             </Col>
                         </Row>
                         )
                     })}
-                <Row>
-                    <TotalInfo totalTax={totalCost} total={totalTax}/>
+                <Row style={{borderTop: 1, borderTopStyle: 'solid'}}>
+                    <TotalInfo totalTax={totalCost} total={totalTax} currencyIcon={currencyIcon}/>
                 </Row> 
                 </div>
-                : 'Loading icon ...'}
-            </div>
 }
 
 export default Table
