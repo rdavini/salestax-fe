@@ -3,7 +3,7 @@ import Create from './Create'
 import Index from './Index'
 
 const Item = () => {
-    const [url, setUrl] = useState('index')
+    const [url, setUrl] = useState('create')
     const renderSwitch = () => {
         switch(url){
             case 'create':

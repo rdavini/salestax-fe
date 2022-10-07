@@ -3,10 +3,10 @@ import React from 'react'
 const TotalInfo = (props) => {
     return <ul>
             <li>
-                Total Tax {props.totalTax} 
+                Total Tax {props.total}
             </li>
             <li>
-                Total {props.total}
+                Total {props.totalTax}
             </li>
         </ul>
 }
