@@ -10,5 +10,6 @@ const fixer_config = { headers: { 'apikey': 'pIdVkEUvukUwnIAunAHUUPiL5l9OpBPT' }
 export default {
     api_sales_tax_create_items: (items) => axios.post(`${SALES_TAX_API_URL}/items`, items),
     api_sales_tax_get_items: () => axios.get(`${SALES_TAX_API_URL}/items`),
+    api_sales_tax_total_info: () => axios.get(`${SALES_TAX_API_URL}/total_info`),
     api_fixer_latest_rate: (base, symbols) => axios.get(`${FIXER_CONVERT_API_URL}/latest?base=${base}&symbols=${symbols}`, fixer_config)
 }

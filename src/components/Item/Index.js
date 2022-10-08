@@ -34,10 +34,18 @@ const Index = ({setUrl}) => {
 
     const getItems = () => {
         api.api_sales_tax_get_items().then(rs =>{
-            setItems(rs.data[0]["items"])
-            setTotalCost( rs.data[0]["total_info"].total_cost )
-            setTotalTax( rs.data[0]["total_info"].total_tax )
+            setItems(rs.data)
         }).catch((err)=> {
+            console.log(err)
+            setError(err.response.message)
+        })
+    }
+
+    const getTotalInfo = () => {
+        api.api_sales_tax_total_info().then(rs => {
+            setTotalCost( rs.data.total_cost )
+            setTotalTax( rs.data.total_tax )
+        }).catch((err)=>{
             console.log(err)
             setError(err.response.message)
         })
@@ -52,6 +60,7 @@ const Index = ({setUrl}) => {
 
     useEffect(()=>{
         getItems();
+        getTotalInfo();
     }, [])
 
     return <div className='container col-md-8' style={{marginTop: 50}}>
