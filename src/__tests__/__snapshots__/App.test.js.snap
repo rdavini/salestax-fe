@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Elements present test testing snapshot 1`] = `
+<div
+  className="App"
+>
+  <div
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "borderBottom": 1,
+        "borderBottomStyle": "solid",
+        "borderColor": "#CBD5DE",
+      }
+    }
+  >
+    <h2
+      textalign="center"
+    >
+      Sales Tax Calculator
+    </h2>
+  </div>
+  <div
+    className="container"
+    style={
+      Object {
+        "marginTop": 50,
+      }
+    }
+  >
+    <h2
+      style={
+        Object {
+          "textAlign": "left",
+        }
+      }
+    >
+      Item Details
+    </h2>
+    <form
+      className=""
+    >
+      <div
+        className="col-md-10"
+        style={
+          Object {
+            "float": "left",
+          }
+        }
+      />
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginTop": 30,
+          }
+        }
+        type="button"
+      >
+        +
+      </button>
+      <div
+        style={
+          Object {
+            "clear": "both",
+            "paddingTop": 20,
+          }
+        }
+      >
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Generate Receipt
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;
