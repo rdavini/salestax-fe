@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
-const Export = ({header,items, totalCost, totalTax, currency}) => {
+const Export = ({header, items, totalCost, totalTax, currency}) => {
     const downloadTxtFile = () => {
         let exp_data = []
         header.forEach((h)=> exp_data.push((h.title+" ")))
@@ -32,4 +33,13 @@ const Export = ({header,items, totalCost, totalTax, currency}) => {
     
     return <button onClick={downloadTxtFile} className='btn btn-light' style={{display: 'block'}}>Download</button>
 }
+
+Export.propTypes = {
+    header: PropTypes.array.isRequired,
+    items: PropTypes.array.isRequired,
+    totalCost: PropTypes.number.isRequired,
+    totalTax: PropTypes.number.isRequired,
+    currency: PropTypes.string.isRequired,
+};
+
 export default Export

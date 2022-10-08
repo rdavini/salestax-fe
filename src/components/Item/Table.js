@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap';
 import TotalInfo from './TotalInfo';
+import PropTypes from 'prop-types';
 
 const Table = ({items, totalCost, totalTax, currencyIcon}) => {
     return <div style={{clear: 'both'}}>
@@ -26,5 +27,12 @@ const Table = ({items, totalCost, totalTax, currencyIcon}) => {
                 </Row> 
                 </div>
 }
+
+Table.propTypes = {
+    items: PropTypes.array.isRequired,
+    totalCost: PropTypes.number.isRequired,
+    totalTax: PropTypes.number.isRequired,
+    currencyIcon: PropTypes.object.isRequired
+};
 
 export default Table
