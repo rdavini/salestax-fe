@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Row, Form} from 'react-bootstrap';
+import { Button, Form} from 'react-bootstrap';
 import api from '../../services/api'
 import ItemForm from './ItemForm';
+import PropTypes from 'prop-types';
 
 const Create = ({setUrl}) => {
   const [itemsPayload, setItemsPayload] = useState([{qty: '', desc: '', price: ''}])
   const [itemsRows, setItemsRows] = useState([])
   const [index, setIndex] = useState(0)
+  const [error, setError] = useState(null)
 
   const styles= {
     contentMarginTop: {
@@ -30,7 +32,10 @@ const Create = ({setUrl}) => {
   const handleSubmit = () => {
     api.api_sales_tax_create_items(itemsPayload).then( () => {
       setUrl('index')
-    }).catch((err) => console.log(err));
+    }).catch((err) => {
+      console.log(err)
+      setError(err.response.data)
+    });
   }
 
   const addRow = () => {
@@ -39,7 +44,13 @@ const Create = ({setUrl}) => {
   }
 
   return (
-    <div class='container' style={styles.contentMarginTop}>
+    <div className='container' style={styles.contentMarginTop}>
+       { error  &&
+        <div className="alert alert-danger" role="alert">
+            { error }
+        </div> 
+      }
+
       <h2 style={styles.alignL}>Item Details</h2>
       <Form>
         <div className='col-md-10' style={styles.floatL}>
@@ -56,5 +67,9 @@ const Create = ({setUrl}) => {
     </div>
   );
 }
+
+Create.propTypes = {
+  setUrl: PropTypes.func.isRequired,
+};
 
 export default Create;

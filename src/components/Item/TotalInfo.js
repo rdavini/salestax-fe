@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types';
+
+const styles={
+    alignEnd:{
+        textAlign: 'end'
+    }
+}
 
 const TotalInfo = (props) => {
-    const styles={
-        alignEnd:{
-            textAlign: 'end'
-        }
-    }
     return <ul>
             <li style={styles.alignEnd}>
                 Total Tax {props.currencyIcon} {props.total}
@@ -15,5 +17,11 @@ const TotalInfo = (props) => {
             </li>
         </ul>
 }
+
+TotalInfo.propTypes = {
+    currencyIcon: PropTypes.object.isRequired,
+    total: PropTypes.number.isRequired,
+    totalTax: PropTypes.number.isRequired,
+};
 
 export default TotalInfo

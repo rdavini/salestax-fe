@@ -10,7 +10,7 @@ const Header = () => {
         }
     }
     return <div style={styles.header}>
-            <h2 textAlign='center'>Sales Tax Calculator</h2>
+            <h2 textalign='center'>Sales Tax Calculator</h2>
         </div>
 }
 
