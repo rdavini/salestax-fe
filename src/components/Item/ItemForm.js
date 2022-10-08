@@ -3,9 +3,9 @@ import { Col, Row, Form} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 const ItemForm = ({itemsPayload, setItemsPayload, index}) => {  
-    const [qty, setQty] = useState(1)
-    const [desc, setDesc] = useState('basdasd')
-    const [price, setPrice] = useState(12.49)
+    const [qty, setQty] = useState('')
+    const [desc, setDesc] = useState('')
+    const [price, setPrice] = useState('')
 
     const styles={
       floatL: {
